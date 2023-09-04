@@ -1,10 +1,11 @@
 DROP TABLE IF EXISTS page;
 
 CREATE TABLE page (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    parent_id BIGINT,
-    title VARCHAR(255) NOT NULL,
-    contents TEXT NOT NULL
+      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+      parent_id BIGINT,
+      title VARCHAR(255) NOT NULL,
+      contents TEXT NOT NULL,
+      INDEX idx_parent_id (parent_id)
 );
 
 -- Main Page

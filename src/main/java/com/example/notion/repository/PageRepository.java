@@ -48,13 +48,13 @@ public class PageRepository {
     }
     public String findBreadCrumbsById(Long id){
         String sql = String.format("WITH RECURSIVE breadcrumbs AS (\n" +
-                "    SELECT id, parent_id, SUBSTRING(title, 1) AS breadcrumbs\n" +
+                "    SELECT id, parent_id, title AS breadcrumbs\n" +
                 "    FROM %s\n" +
                 "    WHERE id = :id\n" +
                 "\n" +
                 "    UNION ALL\n" +
                 "\n" +
-                "    SELECT p.id, p.parent_id, CONCAT(SUBSTRING(p.title, 1), ' / ', b.breadcrumbs) AS breadcrumbs\n" +
+                "    SELECT p.id, p.parent_id, CONCAT(p.title, ' / ', b.breadcrumbs) AS breadcrumbs\n" +
                 "    FROM %s AS p\n" +
                 "             JOIN breadcrumbs AS b ON p.id = b.parent_id\n" +
                 ")\n" +
